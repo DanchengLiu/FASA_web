@@ -28,11 +28,16 @@ def process_request():
     audio_file = request.files['audio']
     if audio_file.filename == '':
         return 'No selected audio file'
+    
+    ### HERE: it checks whether the audio file is allowed
     if audio_file and allowed_file(audio_file.filename):
         audio_filename = secure_filename(audio_file.filename)
         audio_path = os.path.join(app.config['UPLOAD_FOLDER'], audio_filename)
         audio_file.save(audio_path)
-
+    else:
+        # might add something here to convert audio type
+        pass
+        
     text_content = request.form.get('text', '')
 
     if 'textFile' in request.files:
