@@ -17,4 +17,5 @@ A few things that could help:
 
 ## Installation:
 pip install -r requirements.txt 
+
 pip install git+https://github.com/m-bain/whisperx.git@78dcfaab51005aa703ee21375f81ed31bc248560
