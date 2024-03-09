@@ -14,7 +14,7 @@ import heapq
 import math
 
 import whisperx
-import stable_whisper
+
 import gc 
 
 from utils.longest_matching import longest_fuzzy_matching

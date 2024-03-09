@@ -13,3 +13,8 @@ A few things that could help:
 2. I think providing some examples in case user does not have audio at hand could be really helpful. In this case, we need a selection box (or dropdown menu) for using examples. When the user wants to use example, we should use the cached example files instead. Note that process function takes audio file path as input, and extracted text (instead of text file) as input.
 
 3. currently the audio could only be mp3 or wav. Maybe a conversion function would be really helpful in case people want to upload AAC file (from iOS)
+
+
+## Installation:
+pip install -r requirements.txt 
+pip install git+https://github.com/m-bain/whisperx.git@78dcfaab51005aa703ee21375f81ed31bc248560

@@ -22,7 +22,8 @@ def index():
 
 @app.route('/process', methods=['POST'])
 def process_request():
-
+    audio_path = ""
+    
     if 'audio' not in request.files:
         return 'No audio file provided'
     audio_file = request.files['audio']
@@ -37,7 +38,7 @@ def process_request():
     else:
         # might add something here to convert audio type
         pass
-        
+    
     text_content = request.form.get('text', '')
 
     if 'textFile' in request.files:
@@ -48,11 +49,14 @@ def process_request():
             text_file.save(text_path)
             with open(text_path, 'r') as file:
                 text_content += file.read()
-
-    zip_filename = process(audio_path, text_content)
-
+                
+    if audio_path != "":
+        zip_filename = process(audio_path, text_content)
+    else:
+        return send_file('utils/ERROR', as_attachment=True)
+    
     if not zip_filename.endswith('zip'):
-        return send_file('utils/ERROR.zip', as_attachment=True)
+        return send_file('utils/ERROR', as_attachment=True)
     else:
         return send_file(zip_filename, as_attachment=True)
 
