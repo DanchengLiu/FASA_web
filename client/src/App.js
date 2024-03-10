@@ -2,27 +2,31 @@ import { useState } from "react";
 import ProcessFile from "./components/ProcessFile";
 import Accordian from "./components/Accordian";
 import FileContext, { useFileDispatch } from "./context/FileContext";
+import Instructions from "./components/Instructions";
+import ProjectOverview from "./components/ProjectOverview";
+import Header from "./components/Header";
 
 function App() {
 
   return (
     <FileContext>
-      <div className=" p-4 pb-10">
-        <div className=" flex items-center gap-10">
-          <img src="./University_at_Buffalo_logo.svg.png" className=" w-1/3 h-auto" />
-          <p className=" text-8xl text-blue-600">FASA Web</p>
-        </div>
+      <div className="">
+        <Header />
 
-        <div className=" border border-black rounded-md mt-10 p-4 w-1/3 mx-auto bg-white shadow-xl relative">
+        <div className=" flex flex-grow justify-between items-start mt-10 px-4">
+          <ProjectOverview />
 
-          <div className=" flex flex-col gap-4">
-              <Accordian />  
+          <div className=" border border-black rounded-md w-[40%] p-4 mb-10 bg-white shadow-xl relative">
+            <div className=" flex flex-col gap-4">
+                <Accordian />  
 
-              <hr />
+                <hr />
 
-              <ProcessFile />
+                <ProcessFile />
+            </div>
           </div>
 
+          <Instructions />
         </div>
       </div>
     </FileContext>

@@ -9,7 +9,7 @@ const SelectFromUploads = () => {
   return (
     <div className=' p-4 flex flex-col gap-4'>
         <AudioFileUpload />
-
+{/* 
         <hr />
 
         <label>
@@ -17,7 +17,7 @@ const SelectFromUploads = () => {
             <div className=" border rounded-md overflow-hidden">
                 <textarea className=" w-full focus:outline-none" rows={4} />
             </div>
-        </label>
+        </label> */}
 
         <hr />
 

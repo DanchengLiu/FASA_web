@@ -18,7 +18,8 @@ const ProcessFile = () => {
       const formData = new FormData();
 
       formData.append("audio", audioFile);
-      formData.append("text", textFile);
+      const textContent = typeof(textFile) === 'string' ? textFile : textFile.file;
+      formData.append("text", textContent);
 
     //   const apiUrl = `${process.env.REACT_APP_SERVER_URL}` +  ":" + `${process.env.REACT_APP_SERVER_PORT}` + `${typeof(audioFile) === 'string' ? "/processExample" : "/process"}`;
       // fetch(apiUrl, {
@@ -35,8 +36,8 @@ const ProcessFile = () => {
         const link = document.createElement('a');
         link.href = url;
         const fileName = typeof(audioFile) === 'string' ? audioFile.split('.')[0] : audioFile.name.split('.')[0];
-        console.log(fileName);
-        console.log(audioFile.split('.'));
+        // console.log(fileName);
+        // console.log(audioFile.split('.'));
         link.setAttribute('download', `${fileName}.zip`); // Set the filename for the downloaded file
 
         // Append the link to the document body and trigger a click event

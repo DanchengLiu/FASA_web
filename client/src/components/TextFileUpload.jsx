@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFileDispatch } from '../context/FileContext';
 
 const TextFileUpload = () => {
-  const [, textFile,, selectTextFileHandler] = useFileDispatch();
+  const [, textFile,,selectTextFileHandler] = useFileDispatch();
   const [textFiles, setTextFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState({
+    name: "",
+    file: ""
+  });
 
   const addFileHandler = (event) => {
     const file = event.target.files[0];
@@ -13,16 +17,31 @@ const TextFileUpload = () => {
         setTextFiles(updatedFiles);
     }
 
-    event.target.files = null;
+    event.target.value = null;
   }
 
   const fileHandler = (file) => {
-      const selectedFileObj = textFiles.find((f) => f.id === file.id);
-      selectTextFileHandler(selectedFileObj.file);
+      const selectedObj = textFiles.find((f) => f.id === file.id);
+      console.log(selectedObj);
+
+      const reader = new FileReader();
+      
+      let textContent = "";
+      reader.onload = function(event) {
+        const textFromFile = event.target.result;
+        textContent += '\n' + textFromFile;
+        // sendRequest(audioFile, textContent);
+        selectTextFileHandler({name: selectedObj.file.name, file: textContent});
+      };
+
+      reader.readAsText(selectedObj.file);
+      
   }
 
   const deleteFileHandler = (file) => {
     let fileIndex;
+    
+    console.log(textFiles);
 
     for(let i = 0; i<textFiles.length; i++) {
         if(file.id === textFiles[i].id) {
@@ -43,16 +62,20 @@ const TextFileUpload = () => {
     }
   }
 
+  useEffect(() => {
+    setSelectedFile(textFile);
+  }, [textFile]);
+
   return (
     <div class="">
         <label class="mb-5 block text-xl font-semibold text-[#07074D]">
-          Upload text file (.txt only)
+          Upload Text File
         </label>
 
         <div class="">
           <input type="file" id='text' class="sr-only" accept='.txt' onChange={addFileHandler} />
           <label
-            htmlFor="text"
+            htmlFor='text'
             class="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-6 text-center"
           >
             <div>
@@ -77,7 +100,7 @@ const TextFileUpload = () => {
               <div key={file.id} class="mt-5 rounded-md bg-[#F5F7FB] py-4 px-8">
                 <div class="flex items-center justify-between">
                   <div>
-                    <input type='radio' name='textFile' value={file.id} onChange={() => fileHandler(file)} />
+                    <input type='radio' name='textFile' value={file.id} checked={selectedFile.name === file.file.name} onChange={() => fileHandler(file)} />
                     <span class="truncate pr-3 text-base font-medium text-[#07074D] ml-2">
                       {file.file.name}
                     </span>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFileDispatch } from '../context/FileContext';
 
 const AudioFileUpload = () => {
   const [audioFile,, selectAudioFileHandler] = useFileDispatch();
   const [audioFiles, setAudioFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState();
 
   const addFileHandler = (event) => {
     const file = event.target.files[0];
@@ -13,11 +14,12 @@ const AudioFileUpload = () => {
         setAudioFiles(updatedFiles);
     }
 
-    event.target.files = null;
+    event.target.value = null;
   }
 
   const fileHandler = (file) => {
       const selectedAudioObj = audioFiles.find((f) => f.id === file.id);
+      console.log(selectedAudioObj);
       selectAudioFileHandler(selectedAudioObj.file);
   }
 
@@ -42,6 +44,10 @@ const AudioFileUpload = () => {
         }
     }
   }
+
+  useEffect(() => {
+    setSelectedFile(audioFile);
+  }, [audioFile]);
 
   return (
     <div class="">
@@ -77,7 +83,7 @@ const AudioFileUpload = () => {
               <div key={file.id} class="mt-5 rounded-md bg-[#F5F7FB] py-4 px-8">
                 <div class="flex items-center justify-between">
                   <div>
-                    <input type='radio' name='audioFile' value={file.id} onChange={() => fileHandler(file)} />
+                    <input type='radio' name='audioFile' value={file.id} checked={selectedFile.name === file.file.name} onChange={() => fileHandler(file)} />
                     <span class="truncate pr-3 text-base font-medium text-[#07074D] ml-2">
                       {file.file.name}
                     </span>
