@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 import zipfile
 from process import process
+from flask_cors import CORS
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'uploads'
@@ -19,6 +20,57 @@ def allowed_file(filename):
 @app.route('/')
 def index():
     return send_from_directory('static', 'index.html')
+
+CORS(app)
+@app.route('/processExample', methods=['POST'])
+def process_request2():
+    audio_path = ""
+
+    # if request.form.get('audio'):
+    #     return 'No audio file provided'
+    
+    audio_file = request.form.get('audio')
+
+    if(audio_file == ""):
+        return 'No audio file provided'
+    
+    audio_path = "example/" + audio_file
+
+    print("printing audio file and path")
+    print(audio_file)
+    print(audio_path)
+
+    text_file = request.form.get('text')
+    text_path = ""
+
+    if text_file and text_file != "":
+        text_path = "example/" + text_file
+        try:
+            with open(text_path, 'r') as file:
+                text_content = file.read()
+        except FileNotFoundError:
+            print(f"Text file '{text_file}' not found")
+            text_content = ""
+    else:
+        print("No text file provided")
+        text_content = ""
+
+    if audio_path != "":
+        print("processing file")
+        print(audio_path)
+        zip_filename = process(audio_path, text_content)
+        print("file processed")
+    else:
+        return send_file('utils/ERROR', as_attachment=True)
+    
+    if not zip_filename.endswith('zip'):
+        print("returning error response")
+        return send_file('utils/ERROR', as_attachment=True)
+    else:
+        print("returning response") 
+        return send_file(zip_filename, as_attachment=True)
+    
+
 
 @app.route('/process', methods=['POST'])
 def process_request():
@@ -51,14 +103,19 @@ def process_request():
                 text_content += file.read()
                 
     if audio_path != "":
+        print("processing file")
+        print(audio_path)
         zip_filename = process(audio_path, text_content)
+        print("file processed")
     else:
         return send_file('utils/ERROR', as_attachment=True)
     
     if not zip_filename.endswith('zip'):
+        print("returning error response")
         return send_file('utils/ERROR', as_attachment=True)
     else:
+        print("returning response") 
         return send_file(zip_filename, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='alcor.cse.buffalo.edu',port=5000,debug=False)
+    app.run(host='xlabs1.cse.buffalo.edu',port=5005,debug=False)
