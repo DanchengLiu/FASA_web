@@ -52,7 +52,7 @@ const AudioFileUpload = () => {
   return (
     <div class="">
         <label class="mb-5 block text-xl font-semibold text-[#07074D]">
-          Upload Audio File
+          Upload Audio File <span className=' text-lg'>(.mp3/.wav only)</span>
         </label>
 
         <div class="">

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Instructions = () => {
   return (
-    <div className=" border border-black rounded-md shadow-xl w-[25%] flex flex-col p-4 text-justify">
+    <div className=" border border-black rounded-md shadow-xl flex flex-col p-4 text-justify">
         <h1 className=" text-xl font-semibold text-[#07074D]">Instructions for using FASA Web</h1>
         <ul className=" px-4">
           <li style={{listStyleType: "format"}} className=" mt-4">
@@ -18,7 +18,7 @@ const Instructions = () => {
             <strong>Upload your files (Dropdown Menu):</strong>
             <ul>
               <li style={{listStyleType: "circle"}}>
-                Use this option to upload your own files to the interface. It's likely that you can upload data files or documents that the web application will process or analyze.
+                Use this option to upload your own files to the interface. Please upload an audio file (MP3 or WAV) and its corresponding transcription, and the web application will process FASA to give back segmented and aligned dataset.
               </li>
             </ul>
           </li>

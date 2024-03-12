@@ -69,7 +69,7 @@ const TextFileUpload = () => {
   return (
     <div class="">
         <label class="mb-5 block text-xl font-semibold text-[#07074D]">
-          Upload Text File
+          Upload Text File <span className=' text-lg'>(.txt only)</span>
         </label>
 
         <div class="">

@@ -4,6 +4,7 @@ import os
 import zipfile
 from process import process
 from flask_cors import CORS
+from flask import redirect
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'uploads'
@@ -15,7 +16,15 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
+# @app.before_request
+# def before_request():
+    # if app.env == "development":
+    #     return
+    # if request.is_secure:
+    #     url = request.url.replace("https://", "http://", 1)
+    #     code = 301
+    #     return redirect(url, code=code)
+    # return
 
 @app.route('/')
 def index():
@@ -118,4 +127,7 @@ def process_request():
         return send_file(zip_filename, as_attachment=True)
 
 if __name__ == '__main__':
+    # http
     app.run(host='xlabs1.cse.buffalo.edu',port=5005,debug=False)
+    # https
+    # app.run(host='xlabs1.cse.buffalo.edu',port=5005,debug=False, ssl_context=("/home/rrajput2/cert.pem", "/home/rrajput2/key.pem"))
