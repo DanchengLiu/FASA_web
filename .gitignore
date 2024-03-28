@@ -110,3 +110,4 @@ docs/_build/
 /backend/out/
 /backend/uploads/
 *.env
+/backend/nohup.out
