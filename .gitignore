@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+templates/
 
 # C extensions
 *.so
@@ -103,3 +104,6 @@ docs/_build/
 
 # Profile logs
 .prof
+
+# 
+/backend/out/
