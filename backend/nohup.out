@@ -1,0 +1,9 @@
+[2024-03-27 23:58:24 -0400] [599366] [INFO] Starting gunicorn 21.2.0
+[2024-03-27 23:58:24 -0400] [599366] [INFO] Listening at: https://128.205.43.187:5005 (599366)
+[2024-03-27 23:58:24 -0400] [599366] [INFO] Using worker: sync
+[2024-03-27 23:58:24 -0400] [599368] [INFO] Booting worker with pid: 599368
+/home/csgrad/amirnass/miniconda3/envs/whisperx/lib/python3.10/site-packages/pyannote/audio/core/io.py:43: UserWarning: torchaudio._backend.set_audio_backend has been deprecated. With dispatcher enabled, this function is no-op. You can remove the function call.
+  torchaudio.set_audio_backend("soundfile")
+torchvision is not available - cannot save figures
+[2024-03-28 00:00:05 -0400] [599368] [INFO] Parent changed, shutting down: <Worker 599368>
+[2024-03-28 00:00:05 -0400] [599368] [INFO] Worker exiting (pid: 599368)

@@ -1,8 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-/backend/__pycache__/
-/backend/out/
-/backend/uploads/
+
 *.py[cod]
 *$py.class
 
@@ -107,4 +105,7 @@ docs/_build/
 
 # Profile logs
 .prof
-
+# backend
+/backend/__pycache__/
+/backend/out/
+/backend/uploads/
