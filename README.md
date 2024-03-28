@@ -16,13 +16,24 @@ A few things that could help:
 
 
 ## Installation:
-
+```
 pip install -r requirements.txt 
 
-pip install git+https://github.com/m-bain/whisperx.git@78dcfaab51005aa703ee21375f81ed31bc248560
 
+```
 ## Running backend
 
-``` cd backend
+``` 
+cd backend
 gunicorn -w 1 app:app   -b 127.0.0.1:5005 
 ```
+## Running frontend
+
+
+First create and edit .env file. An example env.example is provided. Then run node.
+```
+cp .env.example .env
+npm run start
+
+```
+
