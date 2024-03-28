@@ -18,8 +18,6 @@ A few things that could help:
 ## Installation:
 ```
 pip install -r requirements.txt 
-
-
 ```
 ## Running backend
 
@@ -32,6 +30,7 @@ gunicorn -w 1 app:app   -b 127.0.0.1:5005
 
 First create and edit .env file. An example env.example is provided. Then run node.
 ```
+cd frontend
 cp .env.example .env
 npm run start
 
