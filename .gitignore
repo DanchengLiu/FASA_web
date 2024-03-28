@@ -109,3 +109,4 @@ docs/_build/
 /backend/__pycache__/
 /backend/out/
 /backend/uploads/
+*.env
